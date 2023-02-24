@@ -1,0 +1,4 @@
+.vscode/
+
+# the project binaries
+./bin

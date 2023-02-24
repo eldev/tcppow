@@ -1,0 +1,3 @@
+server_address: server:8099
+merkletree:
+  hash_algo: sha256

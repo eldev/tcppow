@@ -1,0 +1,23 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: server.Dockerfile
+    environment:
+      SERVER_CONFIG_PATH: "config/server.yaml"
+    ports:
+      - "8099:8099"
+    image: tcppow/server:latest
+    restart: "no"
+
+  client:
+    build:
+      context: .
+      dockerfile: client.Dockerfile
+    environment:
+      CLIENT_CONFIG_PATH: "config/client.yaml"
+    image: tcppow/client:latest
+    restart: "on-failure:10"
+    depends_on:
+      server:
+        condition: service_started
