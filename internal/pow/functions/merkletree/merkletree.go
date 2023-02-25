@@ -6,7 +6,7 @@
 // So the client does more work, its time complexity grows linearly
 // with the data blocks count. And the server calculates hashes only from one leaf
 // to the tree's root, i.e. its time complexity is O(log N), where N is the tree size.
-package mekrletree
+package merkletree
 
 import (
 	"bytes"

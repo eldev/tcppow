@@ -30,7 +30,7 @@ func (t TestContent) Equals(other LeafContent) (bool, error) {
 }
 
 func TestFindK(t *testing.T) {
-	tests := []struct {
+	testCases := []struct {
 		n    int
 		want int
 	}{
@@ -42,7 +42,7 @@ func TestFindK(t *testing.T) {
 		{17, 5}, {31, 5},
 		{127, 7}, {128, 7},
 	}
-	for idx, test := range tests {
+	for idx, test := range testCases {
 		k := findK(test.n)
 		require.Equalf(t, test.want, k, "test case %d failed", idx)
 	}
