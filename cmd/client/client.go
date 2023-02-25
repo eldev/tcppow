@@ -73,7 +73,7 @@ func getWisdom(serverAddr string, powFn functions.ClientFunction) error {
 	reader := bufio.NewReader(conn)
 
 	// 1. request challenge
-	requestChallengePayload := []byte("request-challenge\n\n")
+	requestChallengePayload := []byte("request-challenge\n\n") // with empty body => double '\n'
 	_, err = conn.Write(requestChallengePayload)
 	if err != nil {
 		return errors.WithMessage(err, "requesting challenge")
@@ -97,9 +97,9 @@ func getWisdom(serverAddr string, powFn functions.ClientFunction) error {
 	// 3. send the challenge response to the server
 	var verifyChallengePayload []byte
 	verifyChallengePayload = append(verifyChallengePayload,
-		[]byte("verify-challenge\n")...)
-	verifyChallengePayload = append(verifyChallengePayload, challengeRawResp...)
-	verifyChallengePayload = append(verifyChallengePayload, '\n')
+		[]byte("verify-challenge\n")...) // netprotocol method
+	verifyChallengePayload = append(verifyChallengePayload, challengeRawResp...) // netprotocol body
+	verifyChallengePayload = append(verifyChallengePayload, '\n')                // netprotocol needs '\n' after body
 
 	_, err = conn.Write(verifyChallengePayload)
 	if err != nil {
@@ -116,7 +116,7 @@ func getWisdom(serverAddr string, powFn functions.ClientFunction) error {
 	}
 
 	// 5. actual request to the server main logic
-	_, err = conn.Write([]byte("get-wisdom\n\n"))
+	_, err = conn.Write([]byte("get-wisdom\n\n")) // with empty body => double '\n'
 	if err != nil {
 		return errors.WithMessage(err, "writing get-wisdom method")
 	}
