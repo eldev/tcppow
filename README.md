@@ -65,6 +65,6 @@ Other requests might be found in `cmd/client/client.go`.
 1. implementation simplicity
 2. many open source implementations (actually, my implementation inspired by [this](https://github.com/cbergoon/merkletree))
 3. difficulty of hacking
-4. complexity of challenge solving can be drastically increased depending on the data blocks count, because time complexity of Merkle tree building is O(2^N), where N is data blocks count. On the other hand, for verification of client's solution the server doesn't build full tree, it just checks a path from one leaf to the tree's root (time complexity O(log N)).
+4. complexity of challenge solving can be increased depending on the data blocks count, because time complexity of Merkle tree building is O(N) (a dense tree structure can be used, as result time complexity would be O(N^2)), where N is data blocks count. On the other hand, for verification of client's solution the server doesn't build full tree, it just checks a path from one leaf to the tree's root (time complexity O(log N)).
 
 But as I mentioned, the project is flexible and other PoW functions can be added and used without much efforts.

@@ -3,7 +3,7 @@
 // and sends this tree to the server serialized by the standard gob package.
 // On other hand, the server wrapper deserialize this tree
 // and verify that one of generated data block is actually contained in the tree.
-// So the client does much more work, its time complexity grows exponentially
+// So the client does more work, its time complexity grows linearly
 // with the data blocks count. And the server calculates hashes only from one leaf
 // to the tree's root, i.e. its time complexity is O(log N), where N is the tree size.
 package mekrletree
